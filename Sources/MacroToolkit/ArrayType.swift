@@ -9,4 +9,8 @@ public struct ArrayType: TypeProtocol {
         _baseSyntax = syntax
         _attributedSyntax = attributedSyntax
     }
+    
+    public var element: Type {
+        Type(_baseSyntax.element)
+    }
 }

@@ -9,4 +9,8 @@ public struct OptionalType: TypeProtocol {
         _baseSyntax = syntax
         _attributedSyntax = attributedSyntax
     }
+    
+    public var wrappedType: Type {
+        return Type(_baseSyntax.wrappedType)
+    }
 }

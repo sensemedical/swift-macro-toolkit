@@ -9,4 +9,12 @@ public struct DictionaryType: TypeProtocol {
         _baseSyntax = syntax
         _attributedSyntax = attributedSyntax
     }
+    
+    public var key: Type {
+        return Type(_baseSyntax.key)
+    }
+    
+    public var value: Type {
+        return Type(_baseSyntax.value)
+    }
 }
