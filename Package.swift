@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/apple/swift-syntax.git",
+            url: "https://github.com/swift/swift-syntax.git",
             from: "510.0.1"
         ),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0"),
