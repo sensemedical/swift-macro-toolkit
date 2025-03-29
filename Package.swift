@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/swiftlang/swift-syntax.git",
-            from: "510.0.1"
+            from: "600.0.1"
         ),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0"),
         .package(url: "https://github.com/SwiftPackageIndex/SPIManifest.git", from: "0.12.0"),
