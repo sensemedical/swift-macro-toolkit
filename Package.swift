@@ -17,8 +17,9 @@ let package = Package(
             url: "https://github.com/swiftlang/swift-syntax.git",
             from: "600.0.1"
         ),
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0"),
+        .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.3.0"),
         .package(url: "https://github.com/SwiftPackageIndex/SPIManifest.git", from: "0.12.0"),
+        .package(url: "https://github.com/pointfreeco/swift-macro-testing", from: "0.4.0"),
     ],
     targets: [
         // Implementations of macros tested by tests
@@ -47,11 +48,11 @@ let package = Package(
         .testTarget(
             name: "MacroToolkitTests",
             dependencies: [
-                "MacroToolkitExample",
+                "MacroToolkitExamplePlugin",
                 "MacroToolkit",
+                .product(name: "MacroTesting", package: "swift-macro-testing"),
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
             ]
         ),
     ]
