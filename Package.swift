@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.0
 
 import CompilerPluginSupport
 import PackageDescription
@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/swiftlang/swift-syntax.git",
-            from: "601.0.0"
+            from: "601.0.1"
         ),
         .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.3.0"),
         .package(url: "https://github.com/SwiftPackageIndex/SPIManifest.git", from: "0.12.0"),
@@ -55,5 +55,6 @@ let package = Package(
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
             ]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v5]
 )
