@@ -28,8 +28,6 @@ public struct Enum: DeclGroupProtocol, RepresentableBySyntax {
             }
     }
     
-    
-    
     public var attributes: [AttributeListElement] {
         _syntax.attributes.map { attribute in
             switch attribute {
