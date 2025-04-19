@@ -61,4 +61,16 @@ extension DeclGroupProtocol where UnderlyingSyntax: DeclGroupSyntax, Self: Repre
     public var declarationContext: DeclarationContextModifier? {
         DeclarationContextModifier(firstModifierOfKindIn: _syntax.modifiers)
     }
+    
+    public var attributes: [AttributeListElement] {
+        _syntax.attributes.map { attribute in
+            switch attribute {
+                case .attribute(let attributeSyntax):
+                    return .attribute(Attribute(attributeSyntax))
+                case .ifConfigDecl(let ifConfigDeclSyntax):
+                    return .conditionalCompilationBlock(
+                        ConditionalCompilationBlock(ifConfigDeclSyntax))
+            }
+        }
+    }
 }
