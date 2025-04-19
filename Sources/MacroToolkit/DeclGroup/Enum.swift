@@ -24,7 +24,21 @@ public struct Enum: DeclGroupProtocol, RepresentableBySyntax {
                 member.decl.as(EnumCaseDeclSyntax.self)
             }
             .flatMap { syntax in
-                syntax.elements.map(EnumCase.init)
+                syntax.elements.map { EnumCase($0, syntax) }
             }
+    }
+    
+    
+    
+    public var attributes: [AttributeListElement] {
+        _syntax.attributes.map { attribute in
+            switch attribute {
+                case .attribute(let attributeSyntax):
+                    return .attribute(Attribute(attributeSyntax))
+                case .ifConfigDecl(let ifConfigDeclSyntax):
+                    return .conditionalCompilationBlock(
+                        ConditionalCompilationBlock(ifConfigDeclSyntax))
+            }
+        }
     }
 }

@@ -3,9 +3,11 @@ import SwiftSyntax
 /// An enum case from an enum declaration.
 public struct EnumCase {
     public var _syntax: EnumCaseElementSyntax
+    public var _decl: EnumCaseDeclSyntax
 
-    public init(_ syntax: EnumCaseElementSyntax) {
+    public init(_ syntax: EnumCaseElementSyntax, _ decl: EnumCaseDeclSyntax) {
         _syntax = syntax
+        _decl = decl
     }
 
     /// The case's name
@@ -27,6 +29,18 @@ public struct EnumCase {
     }
 
     public func withoutValue() -> Self {
-        EnumCase(_syntax.with(\.rawValue, nil).with(\.parameterClause, nil))
+        EnumCase(_syntax.with(\.rawValue, nil).with(\.parameterClause, nil), _decl)
+    }
+    
+    public var attributes: [AttributeListElement] {
+        _decl.attributes.map { attribute in
+            switch attribute {
+                case .attribute(let attributeSyntax):
+                    return .attribute(Attribute(attributeSyntax))
+                case .ifConfigDecl(let ifConfigDeclSyntax):
+                    return .conditionalCompilationBlock(
+                        ConditionalCompilationBlock(ifConfigDeclSyntax))
+            }
+        }
     }
 }
