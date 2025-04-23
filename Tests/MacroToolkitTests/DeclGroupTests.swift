@@ -62,6 +62,17 @@ final class DeclGroupTests: XCTestCase {
         XCTAssertEqual(testExtension.identifier, "TestStruct")
         XCTAssertEqual(testExtension.members.count, 1)
     }
+    
+    func testProtocolInitialization() throws {
+        let decl: DeclSyntax = """
+            protocol TestProtocol { var name: String { get set } }
+            """
+        let protocolDecl = decl.as(ProtocolDeclSyntax.self)!
+        let testProtocol = `Protocol`(protocolDecl)
+
+        XCTAssertEqual(testProtocol.identifier, "TestProtocol")
+        XCTAssertEqual(testProtocol.members.count, 1)
+    }
 
     func testDeclGroupInitialization() throws {
         let structDecl: DeclSyntax = """
